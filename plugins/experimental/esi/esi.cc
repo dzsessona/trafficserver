@@ -1095,7 +1095,8 @@ modifyResponseHeader(TSCont contp, TSEvent event, void *edata)
                 bool response_cacheable, is_cache_header;
                 is_cache_header = checkForCacheHeader(name, name_len, value, value_len, response_cacheable);
                 if (is_cache_header && response_cacheable) {
-                  destroy_header = true;
+                  TSDebug(DEBUG_TAG, "[%s] Not removing header with name [%.*s]", __FUNCTION__, name_len, name);
+                  destroy_header = false;
                 }
               }
             } // if got valid value for header
